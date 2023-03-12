@@ -37,7 +37,7 @@ app.get("/api/employeelist", async (req, res) => {
     res.json(docs);
   })
   .catch((err) => {
-    res.sed(err);
+    res.send(err);
   });
 });
 //TODO: get single data from db  using api '/api/employeelist/:id'
@@ -47,7 +47,7 @@ app.get("/api/employeelist/:id", async (req, res) => {
     res.json(doc);
   })
   .catch((err) => {
-    res.sed(err);
+    res.send(err);
   });
 });
 //TODO: send data from db using api '/api/employeelist'
@@ -58,7 +58,7 @@ app.post("/api/employeelist", async (req, res) => {
     res.json(doc);
   })
   .catch((err) => {
-    res.sed(err);
+    res.send(err);
   });
 });
 //TODO: delete a employee data from db by using api '/api/employeelist/:id'
@@ -76,7 +76,7 @@ app.delete("/api/employeelist/:id", async (req, res) => {
 //Request body format:{name:'',location:'',position:'',salary:''}
 app.put("/api/employeelist/:id", async (req, res) => {
   let data = await employeeModel
-    .findOneAndUpdate(
+    .findByIdAndUpdate(
       {
         _id: req.params.id,
       },
